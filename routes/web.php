@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Auth::routes(['register'=>false]);
+Route::resources([
+    'store'=>Controllers\StoreController::class
+]);
 Route::get('/{page}', [AdminController::class,'index']);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
