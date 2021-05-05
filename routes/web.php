@@ -14,15 +14,15 @@ use App\Http\Controllers;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes(['register'=>false]);
+Route::get('/logout',[App\Http\Controllers\Auth\LoginController::class,'logout']);
 Route::resources([
-    'store'=>Controllers\StoreController::class
+    'store'=>Controllers\StoreController::class,
+    'species'=>Controllers\SpeciesController::class
 ]);
-Route::get('/{page}', [AdminController::class,'index']);
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/{page}', [Controllers\AdminController::class,'index']);
+
 
 
